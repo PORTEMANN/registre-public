@@ -1,0 +1,27 @@
+# Regénère le rendu statique du registre à chaque commit et le publie
+# sur la branche site (vitrine pour portemann.eu — rien ne s'exécute
+# côté serveur : la page est un fichier produit par le dépôt).
+name: rendu-registre
+on:
+  push:
+    branches: [main]
+    paths: ['REGISTRE.jsonl', 'site/rendu_statique.py', '.github/workflows/rendu.yml']
+
+permissions:
+  contents: write
+
+jobs:
+  rendu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Générer le rendu statique
+        run: python site/rendu_statique.py registre.html
+      - name: Publier sur la branche site
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .
+          publish_branch: site
+          keep_files: false
+          exclude_assets: ''
