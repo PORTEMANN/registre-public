@@ -1,6 +1,9 @@
-# Regénère le rendu statique du registre à chaque commit et le publie
-# sur la branche site (vitrine pour portemann.eu — rien ne s'exécute
-# côté serveur : la page est un fichier produit par le dépôt).
+# Regénère le rendu statique du registre à chaque commit et le publie :
+#  - sur la branche site (vitrine immédiate, rien n'exécute côté serveur) ;
+#  - en SFTP vers le vhost Gandi de portemann.eu (vitrine publique).
+# Le registre canonique reste REGISTRE.jsonl sur main ; la page est un
+# fichier produit par le dépôt. Les identifiants vivent dans les secrets
+# GitHub du dépôt (jamais dans le dépôt lui-même).
 name: rendu-registre
 on:
   push:
@@ -17,7 +20,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Générer le rendu statique
         run: python site/rendu_statique.py registre.html
-      - name: Publier sur la branche site
+      - name: Publier sur la branche site (vitrine immédiate)
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -25,3 +28,12 @@ jobs:
           publish_branch: site
           keep_files: false
           exclude_assets: ''
+      - name: Déployer sur portemann.eu (Gandi, vhost registre)
+        uses: wlixcc/SFTP-Deploy-Action@v2.0.0
+        with:
+          server: sftp.sd3.gpaas.net
+          username: ${{ secrets.GANDI_SFTP_USER }}
+          password: ${{ secrets.GANDI_SFTP_PASSWORD }}
+          local_path: './registre.html'
+          remote_path: './vhosts/registre.portemann.eu/'
+          sftpOnly: true
