@@ -1,9 +1,13 @@
 # Regénère le rendu statique du registre à chaque commit et le publie :
-#  - sur la branche site (vitrine immédiate, rien n'exécute côté serveur) ;
-#  - en SFTP vers le vhost Gandi de portemann.eu (vitrine publique).
+#  - sur la branche site (vitrine immédiate GitHub, rien n'exécute
+#    côté serveur) ;
+#  - sur Gandi par push-to-deploy (mécanisme natif : git push sur le
+#    remote gandi + commande deploy), authentifié par une clé SSH
+#    DEDIÉE au déploiement (jamais le mot de passe de l'instance) —
+#    la clé privée vit dans le secret GANDI_DEPLOY_KEY, révocable
+#    indépendamment chez Gandi.
 # Le registre canonique reste REGISTRE.jsonl sur main ; la page est un
-# fichier produit par le dépôt. Les identifiants vivent dans les secrets
-# GitHub du dépôt (jamais dans le dépôt lui-même).
+# fichier produit par le dépôt.
 name: rendu-registre
 on:
   push:
@@ -28,12 +32,24 @@ jobs:
           publish_branch: site
           keep_files: false
           exclude_assets: ''
-      - name: Déployer sur portemann.eu (Gandi, vhost registre)
-        uses: wlixcc/SFTP-Deploy-Action@v2.0.0
-        with:
-          server: sftp.sd3.gpaas.net
-          username: ${{ secrets.GANDI_SFTP_USER }}
-          password: ${{ secrets.GANDI_SFTP_PASSWORD }}
-          local_path: './registre.html'
-          remote_path: './vhosts/registre.portemann.eu/'
-          sftpOnly: true
+      - name: Déployer sur portemann.eu (Gandi, push-to-deploy)
+        env:
+          GANDI_DEPLOY_KEY: ${{ secrets.GANDI_DEPLOY_KEY }}
+          GANDI_USER: "9daa0556-c07b-11e7-9d8f-00163e6dc886"
+        run: |
+          set -e
+          mkdir -p ~/.ssh
+          printf '%s\n' "$GANDI_DEPLOY_KEY" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H git.sd3.gpaas.net >> ~/.ssh/known_hosts 2>/dev/null
+          # branche de déploiement propre : registre.html seul
+          git config user.name "github-actions"
+          git config user.email "actions@github.com"
+          git checkout --orphan deploy-gandi
+          git rm -rf . >/dev/null 2>&1 || true
+          mv registre.html index.html
+          git add index.html
+          git commit -m "registre.html (rendu automatique)"
+          git remote add gandi "git+ssh://${GANDI_USER}@git.sd3.gpaas.net/registre.portemann.eu.git"
+          git push -f gandi deploy-gandi:master
+          ssh -o StrictHostKeyChecking=accept-new "${GANDI_USER}@git.sd3.gpaas.net" deploy registre.portemann.eu.git
