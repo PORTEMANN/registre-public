@@ -68,6 +68,7 @@ modification rétroactive le change.
 ## Statut
 
 Phase 1 de la feuille de route (2026-10-21) — moteur et schéma
-fonctionnels, première entrée démo. La page publique de dépôt et de
-consultation vit sur histoire-des-sciences.eu (rendu du présent dépôt,
-aucun calcul côté serveur). MIT, stdlib Python seulement.
+fonctionnels, première entrée démo. La page publique de consultation vit sur
+portemann.eu (carte de visite, à côté de la veille — rendu du présent
+dépôt, rien ne s'exécute côté serveur : un rendu statique régénéré à
+chaque commit). MIT, stdlib Python seulement.

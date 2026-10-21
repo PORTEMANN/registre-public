@@ -7,9 +7,9 @@
  * (GitHub PORTEMANN/registre-public) et le rendre. Le registre est le
  * dépôt ; les commits en sont les horodatages ; quiconque peut rejouer.
  *
- * Déploiement : copier ce fichier dans /theos-tech/registre.php et
- * adapter $SOURCE (brute du REGISTRE.jsonl distante, mise en cache
- * locale de 3600 s par courtoisie).
+ * Hébergement prévu : portemann.eu (carte de visite, à côté de la
+ * veille). Si l'hébergement est statique, préférer site/rendu_statique.py
+ * (rendu HTML régénéré à chaque commit — rien ne s'exécute côté serveur).
  */
 
 $SOURCE = 'https://raw.githubusercontent.com/PORTEMANN/registre-public/main/REGISTRE.jsonl';
