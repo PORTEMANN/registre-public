@@ -1,0 +1,11 @@
+REG-2026-002 — Revendication : or par transmutation à x10 le record CERN 2025.
+Source : fil X @MarathonFusion, 21/10/2026 ; couverture Business Today 22/10/2026.
+Référence gelée : ALICE (CERN) ~29 pg d'or sur 4 ans de fonctionnement (à épingler
+au chiffre exact de la publication ALICE avant tout resserrement).
+Conditions de mort :
+  (a) le chiffre de référence ALICE épinglé diverge du facteur 2 -> la comparaison
+      'x10' est morte (à recaler) ;
+  (b) aucune vérification indépendante (revue à comité de lecture ou reproduction)
+      publiée d'ici 2028-01-01 -> la revendication expérimentale reste dormeuse
+      (non confirmée) — dormeur publié au registre.
+Rejou : trimestriel à partir du 2027-04-01.
