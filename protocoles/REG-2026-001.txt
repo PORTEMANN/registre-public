@@ -1,0 +1,10 @@
+REG-2026-001 — Revendication : densité de puissance doublée chaque mois.
+Source : fil X @MarathonFusion, 21/10/2026 (x.com/MarathonFusion/status/2113001073019662481).
+Scellé le : 2026-10-23.
+Conditions de mort :
+  (a) aucune valeur de densité de puissance publiée par la société (W/m3, catalogue
+      ou pré-print) d'ici 2027-06-30 -> la revendication de trajectoire est morte
+      comme affirmation vérifiable (retombe en intention) ;
+  (b) une valeur publiée mais sans progression >= x2 sur deux relevés consécutifs
+      -> la loi 'doublement mensuel' est morte.
+Rejou : trimestriel à partir du 2027-01-01.
