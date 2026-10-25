@@ -1,0 +1,15 @@
+REG-2026-003 — Revendication : realisation experimentale d'une mer de Fermi
+fractionnaire (occupation fractionnaire de la mer de Fermi en 1D).
+Source theorique publiee : arXiv:2602.17657 (PRL, groupe Nagerl + Bastianello,
+Zeng et al.). Article experimental compagnon : SOUS REVUE au scellement
+(2026-10-25).
+Scelle le : 2026-10-25.
+Conditions de mort :
+  (a) non-publication de l'article experimental d'ici 2027-12-31 -> la
+      revendication experimentale reste dormeuse (dormeur publie) ;
+  (b) publication sans occupation fractionnaire mesuree (n(k) pleine) -> la
+      qualification 'fractionnaire' est morte, a recaler ;
+  (c) publication avec occupation fractionnaire mais decroissances de
+      correlation conformes au TLL standard -> la revendication 'au-dela du
+      TLL' est morte.
+Rejou : trimestriel a partir du 2027-01-01.
