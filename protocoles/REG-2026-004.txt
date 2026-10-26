@@ -1,0 +1,14 @@
+REG-2026-004 — Revendication : contre-exemple à la conjecture L^2 de Simon
+(spectre purement ponctuel avec T_{d,a}(V) < delta, a < 1/3).
+Source : arXiv:2610.31677v1 [math.SP], 22/10/2026, Becker & Yang.
+Statut au scellement : prépublication, examen indépendant EN COURS.
+Frontiere : preuve non formalisée — objet HORS REGIME du banc (pas d'artifact
+rejouable) ; la machine scelle le statut, ne juge pas la preuve.
+Scelle le : 2026-10-26.
+Conditions de mort :
+  (a) réfutation publiée (erreur trouvée par les examinateurs) d'ici 2027-12-31
+      -> la conjecture SURVIT : l'entrée est morte, à recaler (dormeur publié) ;
+  (b) confirmation par publication en revue à comité de lecture, ou
+      formalisation vérifiable (Lean) -> la conjecture MEURT : l'entrée se
+      rejoue en 'confirmée'.
+Rejou : trimestriel à partir du 2027-04-01.
