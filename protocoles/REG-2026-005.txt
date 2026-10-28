@@ -1,0 +1,19 @@
+REG-2026-005 — Objet : Yang-Mills existence & mass gap (probleme Clay Millennium).
+Situation au scellement (28/10/2026) : OpenAI annonce l'existence prouvee
+(preuve NL 09/09/2026, formalisation Lean achevee 16/10/2026, groupe de
+gardiens : Gross, Jaffe, Douglas, Klebanov, Nekrasov) — ARTIFACT LEAN NON
+PUBLIC ; mass gap NON revendique.
+Doctrine appliquee : un artifact decrit mais non executable laisse l'objet
+HORS REGIME (NOTE-PESEE-SIMON, frontiere executable/argument).
+Scelle le : 2026-10-28.
+Conditions de sortie / mort :
+  (a) artifact Lean de l'existence rendu PUBLIC et compilant -> le banc
+      ENTRE EN REGIME et rejoue ; l'existence est confirmée ou refutee par
+      le rejou, jamais par le communique (passage declare d'avance) ;
+  (b) refutation publiee par le groupe de gardiens -> la revendication
+      d'existence est morte, entree a recaler ;
+  (c) mass gap : dormeuse SANS condition de mort tant qu'aucune
+      revendication artifactee n'existe ;
+  (d) tout communique sans artifact laisse l'entree dormeuse — jamais
+      'vrai' (regle T25).
+Rejou : trimestriel a partir du 2027-01-01.
