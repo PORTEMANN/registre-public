@@ -39,8 +39,14 @@ jobs:
         run: |
           set -e
           mkdir -p ~/.ssh
-          printf '%s\n' "$GANDI_DEPLOY_KEY" > ~/.ssh/id_ed25519
+          printf '%s\n' "$GANDI_DEPLOY_KEY" > ~/.ssh/id_ed25519.raw
+          # sanitizer : ne garder que le bloc BEGIN/END (tolère les lignes
+          # parasites d'un collage : balises, lignes vides) — mesuré le
+          # 2026-11-01 : 7 lignes collées -> libcrypto refuse, 5 lignes -> OK
+          sed -n '/BEGIN OPENSSH PRIVATE KEY/,/END OPENSSH PRIVATE KEY/p' ~/.ssh/id_ed25519.raw > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
+          echo "lignes de cle: $(wc -l < ~/.ssh/id_ed25519)"
+          ssh-keygen -y -f ~/.ssh/id_ed25519 >/dev/null && echo "CLE_OK" || { echo "CLE_KO"; exit 1; }
           ssh-keyscan -H git.sd3.gpaas.net >> ~/.ssh/known_hosts 2>/dev/null
           # deploiement autonome : depot minimal dans un dossier temporaire
           # (independant de l'etat du workspace apres l'etape gh-pages)
