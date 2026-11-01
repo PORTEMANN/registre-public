@@ -42,13 +42,15 @@ jobs:
           printf '%s\n' "$GANDI_DEPLOY_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
           ssh-keyscan -H git.sd3.gpaas.net >> ~/.ssh/known_hosts 2>/dev/null
-          # branche de déploiement propre : registre.html seul
+          # branche de déploiement propre : registre.html seul, dans htdocs/
+          # (racine servie par Apache sur Gandi — mesurée par SFTP 2026-11-01)
           git config user.name "github-actions"
           git config user.email "actions@github.com"
           git checkout --orphan deploy-gandi
           git rm -rf . >/dev/null 2>&1 || true
-          mv registre.html index.html
-          git add index.html
+          mkdir -p htdocs
+          mv registre.html htdocs/index.html
+          git add htdocs/index.html
           git commit -m "registre.html (rendu automatique)"
           git remote add gandi "git+ssh://${GANDI_USER}@git.sd3.gpaas.net/registre.portemann.eu.git"
           git push -f gandi deploy-gandi:master
