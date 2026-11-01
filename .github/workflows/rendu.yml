@@ -53,3 +53,5 @@ jobs:
           git remote add gandi "git+ssh://${GANDI_USER}@git.sd3.gpaas.net/registre.portemann.eu.git"
           git push -f gandi deploy-gandi:master
           ssh -o StrictHostKeyChecking=accept-new "${GANDI_USER}@git.sd3.gpaas.net" deploy registre.portemann.eu.git
+
+# 2026-11-01 : cle dediee Gandi installee (paire ed25519 generee a cet effet).
