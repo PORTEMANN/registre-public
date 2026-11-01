@@ -69,3 +69,5 @@ jobs:
 # 2026-11-01 : secret GANDI_DEPLOY_KEY corrige, validation CI.
 
 # 2026-11-01 : relance validation (secret nettoye, 5 lignes).
+
+# 2026-11-01 : validation recollage secret (tentative 3).
