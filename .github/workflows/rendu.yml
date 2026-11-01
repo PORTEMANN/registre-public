@@ -41,22 +41,21 @@ jobs:
           mkdir -p ~/.ssh
           printf '%s\n' "$GANDI_DEPLOY_KEY" > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
-          echo "== diagnostic (cle publique derivee du secret, sans secret) =="
-          wc -l ~/.ssh/id_ed25519
-          ssh-keygen -y -f ~/.ssh/id_ed25519 2>&1 | cut -c1-60 || echo "CLE_PRIVEE_ILLISIBLE"
           ssh-keyscan -H git.sd3.gpaas.net >> ~/.ssh/known_hosts 2>/dev/null
-          # branche de déploiement propre : registre.html seul, dans htdocs/
-          # (racine servie par Apache sur Gandi — mesurée par SFTP 2026-11-01)
+          # deploiement autonome : depot minimal dans un dossier temporaire
+          # (independant de l'etat du workspace apres l'etape gh-pages)
+          TMP=$(mktemp -d)
+          cd "$TMP"
+          git init -q
           git config user.name "github-actions"
           git config user.email "actions@github.com"
-          git checkout --orphan deploy-gandi
-          git rm -rf . >/dev/null 2>&1 || true
           mkdir -p htdocs
-          mv registre.html htdocs/index.html
+          cp "$GITHUB_WORKSPACE/registre.html" htdocs/index.html
           git add htdocs/index.html
           git commit -m "registre.html (rendu automatique)"
+          git branch -M master
           git remote add gandi "git+ssh://${GANDI_USER}@git.sd3.gpaas.net/registre.portemann.eu.git"
-          git push -f gandi deploy-gandi:master
+          git push -f gandi master
           ssh -o StrictHostKeyChecking=accept-new "${GANDI_USER}@git.sd3.gpaas.net" deploy registre.portemann.eu.git
 
 # 2026-11-01 : cle dediee Gandi installee (paire ed25519 generee a cet effet).
