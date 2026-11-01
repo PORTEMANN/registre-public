@@ -61,3 +61,5 @@ jobs:
 # 2026-11-01 : cle dediee Gandi installee (paire ed25519 generee a cet effet).
 
 # 2026-11-01 : secret GANDI_DEPLOY_KEY corrige, validation CI.
+
+# 2026-11-01 : relance validation (secret nettoye, 5 lignes).
